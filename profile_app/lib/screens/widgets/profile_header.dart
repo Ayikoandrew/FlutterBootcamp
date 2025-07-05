@@ -15,25 +15,14 @@ class ProfileHeader extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Theme.of(context).colorScheme.primary,
-                  Theme.of(context).colorScheme.secondary,
+                  Colors.black.withValues(alpha: 0.5),
+                  Colors.transparent,
                 ],
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
               ),
             ),
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 8, top: 8),
-              decoration: BoxDecoration(
-                color: Colors.black.withValues(),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    'https://lh3.googleusercontent.com/a/ACg8ocKzqI-0PJHF1E9Jy6bVOfT8Ik6T_6hXAsMTxzDcvQRtLblFo2-j=s288-c-no',
-                  ),
-                ),
-              ),
-            ),
+            child: ImageContainer(),
           ),
 
           Positioned(
@@ -60,6 +49,44 @@ class ProfileHeader extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ImageContainer extends StatelessWidget {
+  const ImageContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 1,
+      child: FittedBox(
+        child: SizedBox(
+          width: 70,
+          height: 70,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(80),
+            ),
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.only(bottom: 8, top: 8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(80),
+                  color: Colors.black.withValues(alpha: 0.5),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      'https://lh3.googleusercontent.com/a/ACg8ocKzqI-0PJHF1E9Jy6bVOfT8Ik6T_6hXAsMTxzDcvQRtLblFo2-j=s288-c-no',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
